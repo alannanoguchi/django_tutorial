@@ -30,14 +30,18 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+INSTALLED_APPS = [ # run: python3 manage.py migrate, will run migrations for new apps
+
+    'django.contrib.admin', # admin site
+    'django.contrib.auth', # authentication system
+    'django.contrib.contenttypes', # a framework for content types
+    'django.contrib.sessions', # a session framework
+    'django.contrib.messages', # a messaging framework
+    'django.contrib.staticfiles', # a framework for managing static files
+
+    'rest_framework', 
+
+    'polls', # used to include the app in the project. The PollsConfig class is in the polls/apps.py file
 ]
 
 MIDDLEWARE = [
@@ -55,7 +59,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DEFAULT_LOGOUT_URL = '/' # enables authentication outside the administrative interface
